@@ -1,7 +1,7 @@
 # HW1-DevOps
 
 ## Instructions <br>
-1. Git clone this repository: `git clone https://github.ncsu.edu/skundal/HW1-DevOps.git`
+1. Git clone this repository
 2. Install packages and link:<br>
 ```
 cd V

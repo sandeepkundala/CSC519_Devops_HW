@@ -61,7 +61,7 @@ Follow the instruction to create IAM User and configuring AWS in the local machi
 
 To install packages: `pip install -r requirements.txt`
 
-To create new keypair: `python create_aws_vm.py create_kp` 
+To create new keypair: `python create_aws_vm.py create_kp`
 
 To run program: `python create_aws_vm.py create_vm`  
 

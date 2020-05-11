@@ -8,7 +8,7 @@ In particular, using redis to construct basic infrastructure components, such as
 
 ### Setup and Run
 ```
-git clone https://github.ncsu.edu/skundal/HW3-DevOps.git
+git clone <repo>
 cd HW3-DevOps
 
 # if the image queues is not pulled
@@ -43,16 +43,16 @@ npm start &
 - [x] Use the [EXPIRE](https://redis.io/commands/expire) command to make sure this key will expire in 10 seconds.
 - [x] When [`/get`](http://192.168.44.81:3003/get) is visited (i.e. GET request), fetch that key, and send its value back to the client: `res.send(value)`.
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t1-1.jpg)
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t1-2.jpg)
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t1-3.jpg)
+![](resources/t1-1.jpg)
+![](resources/t1-2.jpg)
+![](resources/t1-3.jpg)
 
 
 ### Task 2: Recent visited sites
 
 - [x] Create a new route, `/recent`, which will display the most recently visited sites.
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t2.jpg)
+![](resources/t2.jpg)
 
 *Note: http://192.168.44.81:3003/recent displays 5 recently visited sites before "/recent" was called.*
 
@@ -60,8 +60,8 @@ npm start &
 
 - [x] Modify `meow.io/routes/index.js` to cache and return the results of bestFacts. Have cached results expire after 10 seconds. You should see a reduction in load time for the site. 
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t3-1.jpg)
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t3-2.jpg)
+![](resources/t3-1.jpg)
+![](resources/t3-2.jpg)
 
 ### Task 4: Cat picture uploads storage
 ```bash
@@ -71,25 +71,25 @@ curl -F "image=@./data/morning.jpg" http://localhost:3000/upload
 ```
 - [X] Display the 5 most recently uploaded files (/upload) from cache.
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t4-1.jpg)
+![](resources/t4-1.jpg)
 
 ### Task 5: Regulate uploads with queue
 
 - [x] Modify the `meow.io/routes/upload.js` to store incoming images in a queue and not the database. Modify `meow.io/app.js` to timer (setInternal every 100ms), to pop images stored in the queue
 
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t5-0.png)
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t5.png)
+![](resources/t5-0.png)
+![](resources/t5.png)
 
 The screenshots below gives the visual proof that the cache and database contain the same output though the 1st half of both the below screenshots are obtained using the new code which implements caching and the 2nd half of both the screenshots represent the output obtained using the old code which implements getting values from database.
 
 **BEFORE:**
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t5-before.png)
+![](resources/t5-before.png)
 
 **AFTER:** running `curl -F "image=@./data/hairypotter.jpg" http://localhost:3000/upload`
 
-![](https://github.ncsu.edu/skundal/HW3-DevOps/blob/master/resources/t5-after.png)
+![](resources/t5-after.png)
 
 ### Screencast
 The video link is [here](https://drive.google.com/open?id=1KQgbjuKmu0Qp9CN5jpnYwPVMVsiAVHfg)

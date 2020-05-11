@@ -12,7 +12,7 @@ The monitoring infrastructure has several components.
 
 Clone this repository.
 ```bash
-git clone https://github.ncsu.edu/skundal/HW4-DevOps.git
+git clone <repo>
 ```
 
 Pull the following bakerx images.
@@ -118,14 +118,14 @@ siege -b -t30s http://<ip>:9001/stackless
 siege -b -t30s http://<ip>:9001/work
 ```
 
-![](https://github.ncsu.edu/skundal/HW4-DevOps/blob/master/img/Load.png)
+![](img/Load.png)
 
 #### Task 5: New metric.
 
 - Added a new metric in the agent and display it in the dashboard: CPU Speed (GHz)
 
 #### Output:
-![](https://github.ncsu.edu/skundal/HW4-DevOps/blob/master/img/monitor-workshop.png)
+![](img/monitor-workshop.png)
 
 ### Screencast
 The screencast is [here](https://drive.google.com/open?id=1lLvREKHqbl3PdB7yc0xuoxKb9j7vTFBj)

@@ -1,0 +1,6 @@
+*node_modules/
+*.retry
+*uploads/
+*meowio.db
+*dump.rdb
+*.DS_Store

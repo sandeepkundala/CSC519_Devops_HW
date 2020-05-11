@@ -7,7 +7,7 @@ This repository helps the software engineers to provision and configure virtual 
 Clone this repo:
 
 ```bash
-git clone https://github.ncsu.edu/skundal/HW2-DevOps.git
+git clone <repo>
 ```
 
 Install the node.js packages.
@@ -42,46 +42,46 @@ cm playbook cm/extra_requirements/nginx.yml cm/inventory.ini
 
 ### Basic Requirements (50 points):
 
-The code is available [here](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/playbook.yml) <br>
-Roles were created to execute tasks related to [packages](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/roles/packages/tasks/main.yml), [mysql](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/roles/mysql/tasks/main.yml) and [mattermost](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/roles/mattermost/tasks/main.yml).
+The code is available [here](cm/playbook.yml) <br>
+Roles were created to execute tasks related to [packages](cm/roles/packages/tasks/main.yml), [mysql](cm/roles/mysql/tasks/main.yml) and [mattermost](cm/roles/mattermost/tasks/main.yml).
 
 The corresponding screenshots are:
 
 <p align="center">
 cm setup output: <br>
 
-<img src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_1_cm.png" width="400" height="600"/>
+<img src="resources/hw2_1_cm.png" width="400" height="600"/>
 
 </p>
 
 <p align="center">
 ansible playbook output:<br>
 
-<img src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_2_basic.png" width="500" height="300" />
+<img src="resources/hw2_2_basic.png" width="500" height="300" />
 </p>
 
 Result:
 <p align="center">
 Mattermost without proxy
 <br>
-<img align="center" src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_4_mm2.png" width="500" height="300"/>
+<img align="center" src="resources/hw2_4_mm2.png" width="500" height="300"/>
 <br>
 </p>
 
 ### Extra requirements (attempted 15 points)
 
-The code for creating user, team and channel is available [here](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/extra_requirements/mm_server.yml)
+The code for creating user, team and channel is available [here](cm/extra_requirements/mm_server.yml)
 
 <p align="center">
-<img src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_3_mm.png"/>
+<img src="resources/hw2_3_mm.png"/>
 </p>
 
-The code for nginx as proxy is [here](https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/cm/extra_requirements/nginx.yml)
+The code for nginx as proxy is [here](cm/extra_requirements/nginx.yml)
 
 Mattermost with proxy
 
 <p align="center">
-<img align="center" src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_4_mm.png" width="500" height="300"/>
+<img align="center" src="resources/hw2_4_mm.png" width="500" height="300"/>
 <br>
 <p>
 
@@ -93,13 +93,13 @@ Mattermost with proxy
 ## Verification
 User 1 mattermost<br>
 <p align="center">
-<img align="center" src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_5_mm1.png" width="500" height="300"/>
+<img align="center" src="resources/hw2_5_mm1.png" width="500" height="300"/>
 </p>
 <br>
 
 User 2 matttermost<br>
 <p align="center">
-<img align="center" src="https://github.ncsu.edu/skundal/HW2-DevOps/blob/master/resources/hw2_5_mm2.png" width="500" height="300"/>
+<img align="center" src="resources/hw2_5_mm2.png" width="500" height="300"/>
   </p>
 
 ## Screencast (20 points)
