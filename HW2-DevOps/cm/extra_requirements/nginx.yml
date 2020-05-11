@@ -1,0 +1,34 @@
+- hosts: mattermost
+  gather_facts: false
+  become: yes
+
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Copy nginx config template to /etc/nginx/sites-available/mattermost
+      template:  
+        src: nginx.conf.j2
+        dest: /etc/nginx/sites-available/mattermost
+  
+    - name: Remove previous default sites-enabled file.
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      become: yes
+
+    - name: Create symbolic link
+      file:
+        src: /etc/nginx/sites-available/mattermost
+        dest: /etc/nginx/sites-enabled/mattermost
+        state: link
+      become: yes
+
+    - name: restart the nginx service
+      become: yes
+      service:
+        name: nginx
+        enabled: yes
+        state: restarted

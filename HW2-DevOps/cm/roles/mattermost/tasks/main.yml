@@ -1,0 +1,71 @@
+---
+- name: Check if mattermost folder is present in /opt/
+  stat:
+    path: /opt/mattermost
+  register: stat_result
+
+- name: get and uncompress matttermost.tar.gz
+  unarchive:
+    src: https://releases.mattermost.com/5.19.1/mattermost-5.19.1-linux-amd64.tar.gz
+    dest: /home/vagrant/
+    remote_src: yes
+  when: stat_result.stat.exists == False
+
+- name: move mattermost to /opt/
+  command: "mv /home/vagrant/mattermost /opt/"
+  when: stat_result.stat.exists == False
+
+- name: make directory data in /opt/mattermost
+  file:
+    path: /opt/mattermost/data
+    state: directory
+  ignore_errors: true
+
+- name: Create the Mattermost group
+  group:
+    name: "{{ group }}"
+    state: present
+
+- name: create mattermost user and add to mattermost group
+  user:
+    name: "{{ user }}"
+    group: "{{ group }}"
+    
+- name: Change file ownership of /opt/mattermost
+  file:
+    path: /opt/mattermost
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ group }}"
+    mode: g+w
+    recurse: yes
+
+- name: change "DataSource" /opt/mattermost/config/config.json
+  become: yes
+  lineinfile:
+    dest: /opt/mattermost/config/config.json
+    regexp: '"DataSource":'
+    line: '      "DataSource": "{{ sql_user }}:{{ sql_password }}@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s",'
+    backrefs: yes
+
+- name: Create mattermost systemd service 
+  become: yes
+  template:
+    src: mattermost.service.j2
+    dest: /lib/systemd/system/mattermost.service
+    owner: root
+    group: root
+    mode: 0664
+
+- name: Reload daemon
+  become: yes
+  systemd:
+    daemon_reload: yes
+
+
+- name: Enable Mattermost service
+  become: yes
+  service:
+    name: mattermost
+    enabled: yes
+    state: restarted

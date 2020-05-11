@@ -1,0 +1,31 @@
+---
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  become: yes
+
+- name: install python and python-pip
+  become: yes
+  apt:
+    name: [python, python-pip]
+    update_cache: yes
+
+- name: Download and install packages
+  apt:
+    name: [mysql-server, python-mysqldb, python-apt, python-dev, libmysqlclient-dev]
+    update_cache: yes
+  become: yes
+
+- name: install MYSQL-Python
+  become: yes
+  pip:
+    name: MySQL-python
+    state: latest
+    executable: pip
+
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+  become: yes

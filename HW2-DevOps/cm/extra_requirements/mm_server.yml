@@ -1,0 +1,66 @@
+- hosts: mattermost
+  gather_facts: false
+  become: yes
+  vars_files:
+    - mm_team_vars.yml
+  
+  tasks:
+
+  - name: create teams
+    become: yes
+    shell: './mattermost team create --name {{ item.team_name}} --display_name "{{ item.team_display_name }}"'
+    when: item.private == "no"
+    with_items:
+      - "{{ channels }}"
+    args:
+      chdir: /opt/mattermost/bin
+
+  - name: create private teams
+    shell: './mattermost team create --name {{ item.team_name}} --display_name "{{ item.team_display_name }}" --private'
+    when: item.private == "yes"
+    with_items:
+      - "{{ channels }}"
+    args:
+      chdir: /opt/mattermost/bin
+    
+
+  - name: create public channels
+    shell: './mattermost channel create --team {{ item.team_name }} --name {{ item.channel_name}} --display_name "{{ item.channel_display_name }}"'
+    when: item.private == "no"
+    with_items:
+      - "{{ channels }}"
+    args:
+      chdir: /opt/mattermost/bin
+    
+
+  - name: create private channels
+    shell: './mattermost channel create --team {{ item.team_name }} --name {{ item.channel_name}} --display_name "{{ item.channel_display_name }}" --private'
+    when: item.private == "yes"
+    with_items:
+      - "{{ channels }}"
+    args:
+      chdir: /opt/mattermost/bin
+
+  - name: create users
+    shell: './mattermost user create --email {{ item.email }} --username {{ item.name }} --password {{ password }}'
+    with_items:
+      - "{{ users }}"
+    args:
+      chdir: /opt/mattermost/bin
+    ignore_errors: yes
+
+  - name: add users to teams
+    shell: "./mattermost team add {{ item.team }} {{ item.email }} {{ item.name }}"
+    with_items:
+      - "{{ users }}"
+    args:
+      chdir: /opt/mattermost/bin
+
+
+  - name: add users to channel
+    shell: "./mattermost channel add {{ item.team }}:{{ item.channel }} {{ item.email }} {{ item.name }}"
+    with_items:
+      - "{{ users }}"
+    args:
+      chdir: /opt/mattermost/bin
+    

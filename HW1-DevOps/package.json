@@ -1,0 +1,24 @@
+{
+  "name": "v",
+  "version": "1.0.0",
+  "description": "Simple virtualization script.",
+  "main": "index.js",
+  "bin": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "keywords": [
+    "virtual",
+    "box"
+  ],
+  "author": "YOU",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "compression": "^1.7.4",
+    "figlet": "^1.2.4",
+    "node-ssh": "^7.0.0",
+    "ssh2": "^0.8.7",
+    "yargs": "^15.1.0"
+  }
+}

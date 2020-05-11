@@ -1,0 +1,38 @@
+---
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+  become: yes
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+  become: yes
+
+- name: Start the MySQL service
+  become: yes
+  service: 
+    name: mysql 
+    state: started
+    enabled: true
+
+- name: update mysql root password for all root accounts
+  become: yes
+  mysql_user: 
+    name: "{{ sql_user }}"
+    password: "{{ sql_password }}"
+    state: present
+    priv: "*.*:ALL,GRANT"
+
+- name: Create a new database with name 'mattermost'
+  mysql_db:
+    name: mattermost
+    state: present
+
+- name: Restart the MySQL service
+  become: yes
+  service: 
+    name: mysql 
+    state: restarted
+    enabled: true
